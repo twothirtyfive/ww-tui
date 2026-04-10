@@ -1,0 +1,50 @@
+{
+  "name": "wuxiaworld-tui",
+  "version": "1.0.0",
+  "description": "An unofficial terminal-native WuxiaWorld reader with local notes, bookmarks, and exports",
+  "main": "dist/index.js",
+  "bin": {
+    "wuxiaworld-tui": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CONTRIBUTING.md"
+  ],
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\" && tsc -p tsconfig.json",
+    "build:binary": "npm run build && node scripts/build-binary.mjs",
+    "prepare": "npm run build",
+    "start": "node dist/index.js",
+    "test": "tsx --test tests/*.test.ts"
+  },
+  "keywords": [
+    "wuxiaworld",
+    "terminal",
+    "tui",
+    "reader",
+    "novels"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0",
+    "neo-blessed": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/blessed": "^0.1.27",
+    "@types/node": "^25.6.0",
+    "esbuild": "^0.28.0",
+    "postject": "^1.0.0-alpha.6",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}
