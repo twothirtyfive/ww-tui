@@ -13,14 +13,11 @@ const seaTempDir = path.join(releaseDir, ".sea");
 const seaEntryPath = path.join(seaTempDir, "entry.cjs");
 const seaConfigPath = path.join(seaTempDir, "sea-config.json");
 const seaBlobPath = path.join(seaTempDir, "sea-prep.blob");
+const postjectCliPath = path.join(rootDir, "node_modules", "postject", "dist", "cli.js");
 
 function outputBinaryName() {
   const baseName = `wuxiaworld-tui-${process.platform}-${process.arch}`;
   return process.platform === "win32" ? `${baseName}.exe` : baseName;
-}
-
-function postjectCommand() {
-  return process.platform === "win32" ? "postject.cmd" : "postject";
 }
 
 async function buildSeaBundle() {
@@ -62,6 +59,7 @@ function generateSeaBlob() {
 
 function injectSeaBlob(outputBinaryPath) {
   const args = [
+    postjectCliPath,
     outputBinaryPath,
     "NODE_SEA_BLOB",
     seaBlobPath,
@@ -73,7 +71,7 @@ function injectSeaBlob(outputBinaryPath) {
     args.push("--macho-segment-name", "NODE_SEA");
   }
 
-  execFileSync(postjectCommand(), args, {
+  execFileSync(process.execPath, args, {
     cwd: rootDir,
     stdio: "inherit",
   });
