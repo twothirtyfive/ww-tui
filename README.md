@@ -83,6 +83,12 @@ That writes a current-platform executable into `release/`, named like `wuxiaworl
 
 Each target OS and CPU architecture needs its own binary build.
 
+## Releases
+
+- GitHub release builds are produced from tags matching `v*`.
+- Each release job builds a platform-specific standalone binary and publishes a matching `.sha256` checksum file.
+- Private signing keys are not stored in this repository.
+
 ## Local data and privacy
 
 - Session, state, and exports live under `~/.wuxiaworld-tui` by default.

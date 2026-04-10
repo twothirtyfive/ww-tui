@@ -26,3 +26,9 @@ Use `npm run dev` while iterating on the TUI.
 - Run `npm run build`
 - Run `npm run build:binary` if you changed packaging or startup behavior
 - Update `README.md` if controls, setup, or behavior changed
+
+## Cutting a release
+
+- Push a tag like `v1.0.0` to trigger the GitHub release workflow.
+- The workflow builds per-platform binaries and publishes checksum files alongside the release assets.
+- If you later add code-signing or notarization, keep those credentials in GitHub Actions secrets rather than the repository.
